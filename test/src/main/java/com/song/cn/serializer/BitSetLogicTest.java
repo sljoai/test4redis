@@ -16,6 +16,7 @@ public class BitSetLogicTest {
             if((i%5) != 0) bits2.set(i);
         }
 
+        bits1.cardinality();
         bits1.size();
         System.out.println("Initial pattern in bits1: ");
         System.out.println(bits1);
