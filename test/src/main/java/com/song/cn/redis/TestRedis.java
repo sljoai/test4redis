@@ -4,9 +4,9 @@ package com.song.cn.redis;
 import redis.clients.jedis.HostAndPort;
 import redis.clients.jedis.Jedis;
 import redis.clients.jedis.JedisCluster;
+import redis.clients.util.JedisClusterCRC16;
 
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 
 public class TestRedis {
     private static JedisCluster jedisCluster;
@@ -39,6 +39,19 @@ public class TestRedis {
      */
     public static void returnJedis(JedisCluster jedis) {
 
+    }
+
+    public static void main(String[] args) {
+        List<Integer> slots = new ArrayList<>();
+        for(int i=0;i<20;i++){
+            int slot = JedisClusterCRC16.getSlot(Integer.toString(i))%16384;
+            slots.add(slot);
+        }
+        Collections.sort(slots);
+
+        for(Integer slot:slots){
+            System.out.println(slot);
+        }
     }
 
 }
